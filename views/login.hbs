@@ -1,0 +1,45 @@
+<br>
+<p>IMPORTANT NOTE: This is a locally run site with limited authorization / authentication processes.</p>
+<p>Do not use personal usernames or passwords for accounts here.</p>
+<br>
+<div class="login-signup">
+    <h1>Returning user? Log in:</h1>
+    <form id="log-in" method='GET' action='/verify-login'>
+    <fieldset>
+        <label for="loginuser">Username: </label>
+        <input type="text" name="loginuser" id="loginuser" class="textfield">
+        <br>
+        <br>
+        <label for="loginpassword">Password:&nbsp;</label>
+        <input type="text" name="loginpassword" id="loginpassword" class="textfield">
+        <input type="submit" class="button">
+    </fieldset>
+    </form>
+    <br>
+    <br>
+    <br>
+    <h1>New here? Make an account:</h1>
+    <form id="sign-up" method='POST' action="/register">
+    <fieldset>
+        <label for="registeruser">Username: </label>
+        <input type="text" name="registeruser" id="registeruser" class="textfield">
+        <br>
+        <br>
+        <label for="registerpassword">Password:&nbsp;</label>
+        <input type="text" name="registerpassword" id="registerpassword" class="textfield">
+        <input type="submit" class="button">
+    </fieldset>
+    </form>
+    {{!-- <form id="sign-up" method='POST'></form>
+    <fieldset>
+        <label for="registeruser">Username: </label>
+        <input type="text" name="registeruser" id="registeruser" class="textfield">
+        <br>
+        <br>
+        <label for="registerpassword">Password:&nbsp;</label>
+        <input type="text" name="registerpassword" id="registerpassword" class="textfield">
+        
+        <input type="submit" class="button">
+    </fieldset>
+    </form> --}}
+</div>

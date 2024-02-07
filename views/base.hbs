@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Feeling Hungry?</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <header>
+        <h1>Feeling hungry?</h1>
+    </header>
+    {{#if login}}
+    <div class="sidenav">
+        <a href="/?login={{login}}">Home</a>
+        <a href="/search?login={{login}}">Search</a>
+        <a href="/my-recipes?login={{login}}">My Recipes</a>
+        <a href="/surprise-me?login={{login}}">Surprise Me!</a>
+    </div>
+    {{else}}
+    <div class="sidenav">
+        <a href="/">Home</a>
+        <a href="/search">Search</a>
+        <a href="/login">My Recipes</a>
+        <a href="/surprise-me">Surprise Me!</a>
+    </div>
+    {{/if}}
+    {{#if login}}
+    <div class="status">
+        <p>Welcome, {{ login }}!</p>
+        <a href="/">
+            <button class="button">Log Out</button>
+        </a>
+    </div>
+    {{else}}
+    <div class="status">
+        <p>You are not logged in!</p>
+        <a href="/login">
+            <button class="button">Log In / Sign Up </button>
+        </a>
+    </div>
+    {{/if}}
+    <main>
+        {{{ body }}}
+    </main>
+</body>
+</html>
