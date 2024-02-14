@@ -16,6 +16,9 @@ app.engine('handlebars', handlebars.engine({
     layoutsDir: __dirname + '/views/layouts/',
     extName: 'hbs'}));
 
+// fs - for file handling
+const fs = require('fs');
+
 // sqlite
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database(':recipefinder', (err) => {
@@ -51,6 +54,10 @@ let db = new sqlite3.Database(':recipefinder', (err) => {
 //   }
 //   console.log('Closed the database connection.');
 // });
+
+function sleep(ms) {
+  return new Promise((resolve) => setInterval(resolve, ms));
+}
 
 
 /* ------------- Begin Controller Functions ------------- */
@@ -181,6 +188,31 @@ app.get("/surprise-me", (req, res) => {
     login = req.query.login;
   }
   res.render('surprise.hbs', {layout: 'base.hbs', login: login});
+})
+
+app.get("/random-recipe", async (req, res) => {
+  var login = undefined;
+  if (req.query.login) {
+    login = req.query.login;
+  }
+  fs.writeFile('surpriseme.txt', 'random', (err) => {
+    if (err) throw err;
+  })
+  var file = false;
+  while (!file) {
+    await sleep(1000);
+    if (fs.existsSync('randomrecipe.txt')) {
+      file = true;
+    }
+  }
+  fs.readFile('randomrecipe.txt', async function (err, data) {
+    if (err) throw err;
+    var recipe = data.toString();
+    fs.unlink('randomrecipe.txt', (err) => {
+      if (err) throw err;
+      res.render('random.hbs', {layout: 'base.hbs', login: login, recipe: recipe});
+    })
+  })
 })
 
 /* ------------- End Controller Functions ------------- */
