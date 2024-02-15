@@ -1,3 +1,5 @@
+# written by Kelsey Collins
+
 from time import sleep
 import requests
 import json
@@ -22,9 +24,6 @@ def listenForRequest():
         sleep(1)
         request = open("request.txt", "r+")
         flight = request.readline().strip()
-
-    # remove this
-    sleep(2)
 
     # clear request text file
     request.truncate(0)
